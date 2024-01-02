@@ -7,7 +7,7 @@ import { InfoComponent } from './components/info/info.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'search', component: SearchComponent },
-  { path: 'info/id', component: InfoComponent },
+  { path: 'info/:id', component: InfoComponent },
 ];
 
 @NgModule({

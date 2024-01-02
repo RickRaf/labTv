@@ -9,12 +9,24 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   films?: any[];
+  carouselFilm?: any[];
   constructor(
     private filmService: FilmService,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
+    this.getPopular();
+    this.getTopRated();
+  }
+
+  getTopRated() {
+    this.filmService.getTmdbTopRated().subscribe((data) => {
+      this.carouselFilm = data.results;
+    });
+  }
+
+  getPopular() {
     this.filmService.getTmdbData().subscribe((data) => {
       this.films = data.results;
     });
