@@ -14,14 +14,22 @@ export class FilmService {
 
   constructor(private http: HttpClient) {}
 
-  getJsonServerData(): Observable<any> {
-    const url = `${this.jsonServerBaseUrl}/tuoEndpoint`; // Sostituisci con il tuo endpoint
-    return this.http.get(url);
-  }
+  //   getJsonServerData(): Observable<any> {
+  //     const url = `${this.jsonServerBaseUrl}/tuoEndpoint`;
+  //     return this.http.get(url);
+  //   }
 
-  // Esempio di richiesta GET all'API di TMDb
   getTmdbData(): Observable<any> {
     const url = `${this.tmdbBaseUrl}/movie/popular?api_key=${this.filmApiKey}`;
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.filmAccessToken}`,
+    });
+
+    return this.http.get(url, { headers });
+  }
+
+  getTmdbTopRated(): Observable<any> {
+    const url = `${this.tmdbBaseUrl}/movie/top_rated?api_key=${this.filmApiKey}`;
     const headers = new HttpHeaders({
       Authorization: `Bearer ${this.filmAccessToken}`,
     });

@@ -8,9 +8,19 @@ import { HomeComponent } from './components/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FilmService } from './services/film.service';
+import { CarouselComponent } from './components/carousel/carousel.component';
+import { SearchComponent } from './components/search/search.component';
+import { InfoComponent } from './components/info/info.component';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, HomeComponent],
+  declarations: [
+    AppComponent,
+    NavbarComponent,
+    HomeComponent,
+    CarouselComponent,
+    SearchComponent,
+    InfoComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
