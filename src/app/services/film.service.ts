@@ -14,10 +14,10 @@ export class FilmService {
 
   constructor(private http: HttpClient) {}
 
-  //   getJsonServerData(): Observable<any> {
-  //     const url = `${this.jsonServerBaseUrl}/tuoEndpoint`;
-  //     return this.http.get(url);
-  //   }
+  getJsonServerData(): Observable<any> {
+    const url = `${this.jsonServerBaseUrl}/tuoEndpoint`;
+    return this.http.get(url);
+  }
 
   getTmdbData(): Observable<any> {
     const url = `${this.tmdbBaseUrl}/movie/popular?api_key=${this.filmApiKey}`;
