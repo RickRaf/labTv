@@ -1,25 +1,35 @@
-.film {
-  background-color: black;
-  border-radius: 1%;
-  width: 35%;
-  margin: 0 auto;
+.filmCarousel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.btn-play {
-  margin-right: 10px;
+.carousel-inner {
+  width: 100%;
 }
 
-.btn-play,
-.btn-info {
-  background-color: rgba(240, 255, 255, 0);
-  transition: 0.8s ease-in-out;
-  color: red;
-  border-color: red;
+.carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 25%;
 }
 
-.btn-play:hover,
-.btn-info:hover {
-  background-color: red;
+.prev,
+.next {
+  width: 2.5%;
   color: white;
-  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.4);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.prev {
+  border-radius: 0 5px 5px 0;
+}
+
+.next {
+  border-radius: 5px 0 0 5px;
 }

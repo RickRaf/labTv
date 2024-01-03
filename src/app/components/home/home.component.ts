@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   films?: any[];
-  carouselFilm?: any[];
+
   constructor(
     private filmService: FilmService,
     private route: ActivatedRoute
@@ -17,13 +17,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.getPopular();
-    this.getTopRated();
-  }
-
-  getTopRated() {
-    this.filmService.getTmdbTopRated().subscribe((data) => {
-      this.carouselFilm = data.results;
-    });
   }
 
   getPopular() {

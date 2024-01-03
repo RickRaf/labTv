@@ -1,60 +1,49 @@
-<div id="carouselExample" class="carousel slide">
+<app-carousel></app-carousel>
+
+<div class="filmCarousel carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
-    <div
-      *ngFor="let film of carouselFilm; let i = index"
-      class="carousel-item"
-      [class.active]="i === 0"
-    >
-      <img
-        src="https://image.tmdb.org/t/p/original/{{ film.backdrop_path }}"
-        class="d-block w-100"
-        alt="..."
-      />
-
-      <div class="carousel-caption d-md-block film">
-        <h1>{{ film.title }}</h1>
-
-        <button class="btn btn-primary btn-play">
-          Play <i class="fas fa-play"></i>
-        </button>
-        <button class="btn btn-secondary btn-info">
-          Info <i class="fas fa-info-circle"></i>
-        </button>
+    <div class="carousel-item active">
+      <div class="d-flex justify-content-around">
+        <div
+          *ngFor="let film of films?.slice(0, 5)"
+          class="card g-2"
+          style="width: 18rem"
+        >
+          <div class="card-body">
+            <h5 class="card-title">{{ film.title }}</h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary">
+              {{ film.release_date }}
+            </h6>
+            <img
+              [src]="getMoviePosterUrl(film?.poster_path)"
+              class="card-img-top"
+              alt="..."
+            />
+            <p class="card-text">{{ film.overview }}</p>
+            <a href="#" class="card-link">Guarda Trailer</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <button
-    class="carousel-control-prev"
-    type="button"
-    data-bs-target="#carouselExample"
-    data-bs-slide="prev"
-  >
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button
-    class="carousel-control-next"
-    type="button"
-    data-bs-target="#carouselExample"
-    data-bs-slide="next"
-  >
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
-
-<div class="card" style="width: 18rem" *ngFor="let film of films">
-  <div class="card-body">
-    <h5 class="card-title">{{ film.title }}</h5>
-    <h6 class="card-subtitle mb-2 text-body-secondary">
-      {{ film.release_date }}
-    </h6>
-    <img
-      [src]="getMoviePosterUrl(film.poster_path)"
-      class="card-img-top"
-      alt="..."
-    />
-    <p class="card-text">{{ film.overview }}</p>
-    <a href="#" class="card-link">Guarda Trailer</a>
+  <div class="carousel-controls">
+    <button
+      class="carousel-control-prev prev"
+      type="button"
+      data-bs-target="#filmCarousel"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+      class="carousel-control-next next"
+      type="button"
+      data-bs-target="#filmCarousel"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
 </div>

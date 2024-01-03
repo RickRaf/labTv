@@ -11,6 +11,7 @@ import { FilmService } from './services/film.service';
 
 import { SearchComponent } from './components/search/search.component';
 import { InfoComponent } from './components/info/info.component';
+import { CarouselComponent } from './components/carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { InfoComponent } from './components/info/info.component';
     HomeComponent,
     SearchComponent,
     InfoComponent,
+    CarouselComponent,
   ],
   imports: [
     BrowserModule,
