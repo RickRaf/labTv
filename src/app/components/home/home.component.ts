@@ -9,6 +9,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   films?: any[];
+  startIndex: number = 0;
+  filmsToShow: number = 5;
 
   constructor(
     private filmService: FilmService,
@@ -30,6 +32,33 @@ export class HomeComponent implements OnInit {
       return `https://image.tmdb.org/t/p/w500/${posterPath}`;
     } else {
       return 'https://via.placeholder.com/150';
+    }
+  }
+
+  get visibleFilms(): any[] {
+    return this.films!.slice(
+      this.startIndex,
+      this.startIndex + this.filmsToShow
+    );
+  }
+
+  loadPreviousFilms() {
+    // Riduci l'indice di partenza per mostrare film precedenti
+    this.startIndex = Math.max(0, this.startIndex - this.filmsToShow);
+
+    //logica per rendere lo scroll infinito
+    if (this.startIndex === 0) {
+      this.startIndex = this.films!.length - this.filmsToShow;
+    }
+  }
+
+  loadNextFilms() {
+    // Aumenta l'indice di partenza per mostrare film successivi
+    if (this.startIndex + this.filmsToShow < this.films!.length) {
+      this.startIndex += this.filmsToShow;
+    } else {
+      //logica per rendere lo scroll infinito
+      this.startIndex = 0;
     }
   }
 }

@@ -1,11 +1,12 @@
 <app-carousel></app-carousel>
 
+<!-- app-carousel.component.html -->
 <div class="filmCarousel carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
       <div class="d-flex justify-content-around">
         <div
-          *ngFor="let film of films?.slice(0, 5)"
+          *ngFor="let film of visibleFilms"
           class="card g-2"
           style="width: 18rem"
         >
@@ -26,21 +27,19 @@
       </div>
     </div>
   </div>
-  <div class="carousel-controls">
+  <div class="carousel-controls d-flex align-items-center">
     <button
-      class="carousel-control-prev prev"
+      class="carousel-control-prev prev my-auto"
       type="button"
-      data-bs-target="#filmCarousel"
-      data-bs-slide="prev"
+      (click)="loadPreviousFilms()"
     >
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
     </button>
     <button
-      class="carousel-control-next next"
+      class="carousel-control-next next my-auto"
       type="button"
-      data-bs-target="#filmCarousel"
-      data-bs-slide="next"
+      (click)="loadNextFilms()"
     >
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
