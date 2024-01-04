@@ -19,6 +19,7 @@
               [src]="getMoviePosterUrl(film.poster_path)"
               class="card-img-top"
               alt="..."
+              routerLink="['/movie',film.id]"
             />
             <p class="card-text" style="color: white">{{ film.overview }}</p>
             <button class="btn btn-primary btn-play">

@@ -21,7 +21,7 @@
           <a
             class="nav-link active text-danger fs-5 fw-bold me-3"
             aria-current="page"
-            routerLink="home"
+            routerLink=""
             >Home</a
           >
         </li>
@@ -41,12 +41,18 @@
           Benvenuto {{ authService.getLoggedUser()!.user.name }} <br />(Esci)
         </button>
       </ng-container>
-      <form class="d-flex" role="search">
+      <form
+        class="d-flex"
+        role="search"
+        [formGroup]="searchForm"
+        (ngSubmit)="submitForm()"
+      >
         <input
           class="form-control me-2"
           type="search"
-          placeholder="Search"
+          placeholder="Search Movie Here...."
           aria-label="Search"
+          formControlName="movieName"
         />
         <button
           class="btn btn-outline-danger"

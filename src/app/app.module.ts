@@ -8,6 +8,7 @@ import { HomeComponent } from './components/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FilmService } from './services/film.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { SearchComponent } from './components/search/search.component';
 import { InfoComponent } from './components/info/info.component';
@@ -24,10 +25,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import {
-  MatSnackBarModule,
-  MAT_SNACK_BAR_DEFAULT_OPTIONS,
-} from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -58,6 +56,7 @@ import { FormsModule } from '@angular/forms';
     MatSidenavModule,
     MatSnackBarModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [FilmService],
   bootstrap: [AppComponent],
