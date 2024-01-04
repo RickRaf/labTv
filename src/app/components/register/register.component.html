@@ -1,0 +1,132 @@
+<!-- <div class="center-screen">
+  <form #laForm="ngForm" class="auth" (ngSubmit)="register()">
+    <mat-form-field appearance="fill">
+      <mat-label>Nome</mat-label>
+      <input
+        #nameInput="ngModel"
+        matInput
+        type="text"
+        name="name"
+        [(ngModel)]="model.name"
+        placeholder="Nome..."
+        required
+      />
+      <mat-error *ngIf="nameInput.hasError('required')"
+        >Nome obbligatorio</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>E-mail</mat-label>
+      <input
+        #emailInput="ngModel"
+        matInput
+        type="email"
+        name="email"
+        [(ngModel)]="model.email"
+        placeholder="E-mail..."
+        required
+        pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+      />
+      <mat-error *ngIf="emailInput.hasError('required')"
+        >E-mail obbligatoria</mat-error
+      >
+      <mat-error *ngIf="emailInput.hasError('pattern')"
+        >E-mail non valida</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <input
+        #passwordInput="ngModel"
+        matInput
+        type="password"
+        name="password"
+        [(ngModel)]="model.password"
+        placeholder="Password..."
+        required
+      />
+      <mat-error *ngIf="passwordInput.hasError('required')"
+        >Password obbligatoria</mat-error
+      >
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="laForm.form.invalid"
+    >
+      Entra
+    </button>
+    <mat-error *ngIf="errorMessage">{{ errorMessage }}</mat-error>
+  </form>
+</div> -->
+
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <form
+    #laForm="ngForm"
+    class="auth p-4 rounded bg-light"
+    (ngSubmit)="register()"
+  >
+    <div class="form-group">
+      <label for="name">Nome</label>
+      <input
+        #nameInput="ngModel"
+        class="form-control"
+        type="text"
+        id="name"
+        name="name"
+        [(ngModel)]="model.name"
+        placeholder="Nome..."
+        required
+      />
+      <div *ngIf="nameInput.hasError('required')" class="text-danger">
+        Nome obbligatorio
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email">E-mail</label>
+      <input
+        #emailInput="ngModel"
+        class="form-control"
+        type="email"
+        id="email"
+        name="email"
+        [(ngModel)]="model.email"
+        placeholder="E-mail..."
+        required
+        pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+      />
+      <div *ngIf="emailInput.hasError('required')" class="text-danger">
+        E-mail obbligatoria
+      </div>
+      <div *ngIf="emailInput.hasError('pattern')" class="text-danger">
+        E-mail non valida
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        #passwordInput="ngModel"
+        class="form-control"
+        type="password"
+        id="password"
+        name="password"
+        [(ngModel)]="model.password"
+        placeholder="Password..."
+        required
+      />
+      <div *ngIf="passwordInput.hasError('required')" class="text-danger">
+        Password obbligatoria
+      </div>
+    </div>
+    <button
+      mat-raised-button
+      class="btn btn-primary"
+      type="submit"
+      [disabled]="laForm.form.invalid"
+    >
+      Registrati
+    </button>
+    <div *ngIf="errorMessage" class="text-danger">{{ errorMessage }}</div>
+  </form>
+</div>

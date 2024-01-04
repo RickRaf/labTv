@@ -8,8 +8,14 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  films?: any[];
-  startIndex: number = 0;
+  popularFilms?: any[];
+  upComingFilms?: any[];
+  nowPlayingFilms?: any[];
+
+  popularStartIndex: number = 0;
+  upComingStartIndex: number = 0;
+  nowPlayingStartIndex: number = 0;
+
   filmsToShow: number = 5;
 
   constructor(
@@ -19,11 +25,18 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.getPopular();
+    this.getUpcoming();
+  }
+
+  getUpcoming() {
+    this.filmService.getTmdbUpcoming().subscribe((data) => {
+      this.upComingFilms = data.results;
+    });
   }
 
   getPopular() {
-    this.filmService.getTmdbData().subscribe((data) => {
-      this.films = data.results;
+    this.filmService.getTmdbPopular().subscribe((data) => {
+      this.popularFilms = data.results;
     });
   }
 
@@ -35,30 +48,63 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  get visibleFilms(): any[] {
-    return this.films!.slice(
-      this.startIndex,
-      this.startIndex + this.filmsToShow
-    );
-  }
-
-  loadPreviousFilms() {
-    // Riduci l'indice di partenza per mostrare film precedenti
-    this.startIndex = Math.max(0, this.startIndex - this.filmsToShow);
-
-    //logica per rendere lo scroll infinito
-    if (this.startIndex === 0) {
-      this.startIndex = this.films!.length - this.filmsToShow;
+  getVisibleFilms(startIndex: number, films: any[]): any[] {
+    // Aggiungi una verifica per assicurarti che 'films' non sia undefined
+    if (films && films.length > 0) {
+      return films.slice(startIndex, startIndex + this.filmsToShow);
+    } else {
+      return [];
     }
   }
 
-  loadNextFilms() {
-    // Aumenta l'indice di partenza per mostrare film successivi
-    if (this.startIndex + this.filmsToShow < this.films!.length) {
-      this.startIndex += this.filmsToShow;
+  loadPreviousFilms(startIndex: number, films: any[]): void {
+    startIndex = Math.max(0, startIndex - this.filmsToShow);
+    if (startIndex === 0) {
+      startIndex = films!.length - this.filmsToShow;
+    }
+
+    if (films === this.popularFilms) {
+      this.popularStartIndex = startIndex;
+    } else if (films === this.upComingFilms) {
+      this.upComingStartIndex = startIndex;
+    }
+  }
+
+  loadNextFilms(startIndex: number, films: any[]): void {
+    if (startIndex + this.filmsToShow < films!.length) {
+      startIndex += this.filmsToShow;
     } else {
-      //logica per rendere lo scroll infinito
-      this.startIndex = 0;
+      startIndex = 0;
+    }
+
+    if (films === this.popularFilms) {
+      this.popularStartIndex = startIndex;
+    } else if (films === this.upComingFilms) {
+      this.upComingStartIndex = startIndex;
+    }
+  }
+
+  loadPreviousPopularFilms() {
+    this.loadPreviousFilms(this.popularStartIndex, this.popularFilms!);
+  }
+
+  loadNextPopularFilms() {
+    this.loadNextFilms(this.popularStartIndex, this.popularFilms!);
+  }
+
+  loadPreviousUpComingFilms() {
+    this.loadPreviousFilms(this.upComingStartIndex, this.upComingFilms!);
+  }
+
+  loadNextUpComingFilms() {
+    this.loadNextFilms(this.upComingStartIndex, this.upComingFilms!);
+  }
+
+  getVisibleFilmsGeneric(startIndex: number, films: any[]): any[] {
+    if (films && films.length > 0) {
+      return films.slice(startIndex, startIndex + this.filmsToShow);
+    } else {
+      return [];
     }
   }
 }

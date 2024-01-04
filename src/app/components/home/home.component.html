@@ -1,27 +1,32 @@
 <app-carousel></app-carousel>
 
-<!-- app-carousel.component.html -->
-<div class="filmCarousel carousel slide" data-bs-ride="carousel">
+<div class="popularCarousel carousel slide" data-bs-ride="carousel">
+  <h1>Popular</h1>
   <div class="carousel-inner">
     <div class="carousel-item active">
       <div class="d-flex justify-content-around">
         <div
-          *ngFor="let film of visibleFilms"
+          *ngFor="let film of getVisibleFilms(popularStartIndex, popularFilms!)"
           class="card g-2"
-          style="width: 18rem"
+          style="width: 18rem; background-color: black"
         >
           <div class="card-body">
-            <h5 class="card-title">{{ film.title }}</h5>
-            <h6 class="card-subtitle mb-2 text-body-secondary">
+            <h3 class="card-title" style="color: white">{{ film.title }}</h3>
+            <h6 class="card-subtitle mb-2" style="color: white">
               {{ film.release_date }}
             </h6>
             <img
-              [src]="getMoviePosterUrl(film?.poster_path)"
+              [src]="getMoviePosterUrl(film.poster_path)"
               class="card-img-top"
               alt="..."
             />
-            <p class="card-text">{{ film.overview }}</p>
-            <a href="#" class="card-link">Guarda Trailer</a>
+            <p class="card-text" style="color: white">{{ film.overview }}</p>
+            <button class="btn btn-primary btn-play">
+              trailer <i class="fas fa-play"></i>
+            </button>
+            <button class="btn btn-secondary btn-info">
+              Info <i class="fas fa-info-circle"></i>
+            </button>
           </div>
         </div>
       </div>
@@ -31,7 +36,7 @@
     <button
       class="carousel-control-prev prev my-auto"
       type="button"
-      (click)="loadPreviousFilms()"
+      (click)="loadPreviousPopularFilms()"
     >
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
@@ -39,7 +44,62 @@
     <button
       class="carousel-control-next next my-auto"
       type="button"
-      (click)="loadNextFilms()"
+      (click)="loadNextPopularFilms()"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+
+<!-- 2 carousel -->
+<div class="popularCarousel carousel slide" data-bs-ride="carousel">
+  <h1>Upcoming</h1>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <div class="d-flex justify-content-around">
+        <div
+          *ngFor="
+            let film of getVisibleFilms(upComingStartIndex, upComingFilms!)
+          "
+          class="card g-2"
+          style="width: 18rem; background-color: black"
+        >
+          <div class="card-body">
+            <h3 class="card-title" style="color: white">{{ film.title }}</h3>
+            <h6 class="card-subtitle mb-2" style="color: white">
+              {{ film.release_date }}
+            </h6>
+            <img
+              [src]="getMoviePosterUrl(film.poster_path)"
+              class="card-img-top"
+              alt="..."
+            />
+            <p class="card-text" style="color: white">{{ film.overview }}</p>
+            <button class="btn btn-primary btn-play">
+              trailer <i class="fas fa-play"></i>
+            </button>
+            <button class="btn btn-secondary btn-info">
+              Info <i class="fas fa-info-circle"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="carousel-controls d-flex align-items-center">
+    <button
+      class="carousel-control-prev prev my-auto"
+      type="button"
+      (click)="loadPreviousUpComingFilms()"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+      class="carousel-control-next next my-auto"
+      type="button"
+      (click)="loadNextUpComingFilms()"
     >
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
