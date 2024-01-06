@@ -1,0 +1,27 @@
+img {
+  width: 100%;
+  height: auto;
+  margin-left: 0;
+}
+
+h1 {
+  color: red;
+  font-weight: bold;
+}
+
+p {
+  color: white;
+}
+
+.btn {
+  background-color: rgba(240, 255, 255, 0);
+  transition: 0.8s ease-in-out;
+  color: red;
+  border-color: red;
+}
+
+.btn:hover {
+  background-color: red;
+  color: white;
+  opacity: 1;
+}

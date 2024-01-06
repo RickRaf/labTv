@@ -56,6 +56,10 @@ h1 {
   opacity: 1;
 }
 
+img {
+  cursor: pointer;
+}
+
 p {
   margin-top: 2vh;
 }

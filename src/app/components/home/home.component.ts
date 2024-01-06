@@ -40,6 +40,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  //codice per la img
   getMoviePosterUrl(posterPath: string): string {
     if (posterPath) {
       return `https://image.tmdb.org/t/p/w500/${posterPath}`;
@@ -49,7 +50,7 @@ export class HomeComponent implements OnInit {
   }
 
   getVisibleFilms(startIndex: number, films: any[]): any[] {
-    // Aggiungi una verifica per assicurarti che 'films' non sia undefined
+    //verifica per assicurarti che films non sia undefined
     if (films && films.length > 0) {
       return films.slice(startIndex, startIndex + this.filmsToShow);
     } else {
@@ -57,6 +58,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  //gestione generale del previous button
   loadPreviousFilms(startIndex: number, films: any[]): void {
     startIndex = Math.max(0, startIndex - this.filmsToShow);
     if (startIndex === 0) {
@@ -70,6 +72,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  //gestione generale del next button
   loadNextFilms(startIndex: number, films: any[]): void {
     if (startIndex + this.filmsToShow < films!.length) {
       startIndex += this.filmsToShow;
@@ -84,6 +87,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  //applico ad ogni button le istruzioni generali
   loadPreviousPopularFilms() {
     this.loadPreviousFilms(this.popularStartIndex, this.popularFilms!);
   }

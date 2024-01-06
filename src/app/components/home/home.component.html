@@ -18,16 +18,10 @@
             <img
               [src]="getMoviePosterUrl(film.poster_path)"
               class="card-img-top"
-              alt="..."
-              routerLink="['/movie',film.id]"
+              [alt]="film.title"
+              [routerLink]="['/info', film.id]"
             />
             <p class="card-text" style="color: white">{{ film.overview }}</p>
-            <button class="btn btn-primary btn-play">
-              trailer <i class="fas fa-play"></i>
-            </button>
-            <button class="btn btn-secondary btn-info">
-              Info <i class="fas fa-info-circle"></i>
-            </button>
           </div>
         </div>
       </div>
@@ -74,15 +68,10 @@
             <img
               [src]="getMoviePosterUrl(film.poster_path)"
               class="card-img-top"
-              alt="..."
+              [alt]="film.title"
+              [routerLink]="['/info', film.id]"
             />
             <p class="card-text" style="color: white">{{ film.overview }}</p>
-            <button class="btn btn-primary btn-play">
-              trailer <i class="fas fa-play"></i>
-            </button>
-            <button class="btn btn-secondary btn-info">
-              Info <i class="fas fa-info-circle"></i>
-            </button>
           </div>
         </div>
       </div>
