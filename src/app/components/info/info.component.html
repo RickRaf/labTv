@@ -1,5 +1,5 @@
 <div class="container mt-5">
-  <div class="row p-5">
+  <div class="row p-5" style="margin-left: 0">
     <div class="col-lg-2" *ngIf="getInfoResult.poster_path">
       <img
         src="https://image.tmdb.org/t/p/original/{{
@@ -16,6 +16,26 @@
       >
         watch trailer <i class="fas fa-play"></i>
       </button>
+      <div class="row mt-4 p-4">
+        <h2 class="text-white">Top Cast</h2>
+        <div class="row">
+          <div class="col-lg-4" *ngFor="let cast of getCastResult">
+            <div class="row mt-2 mb-2">
+              <div class="col-lg-2" *ngIf="cast.profile_path">
+                <img
+                  src="https://image.tmdb.org/t/p/original/{{
+                    cast.profile_path
+                  }}"
+                />
+              </div>
+              <div class="col-lg-10">
+                <h3 class="text-white">{{ cast.original_name }}</h3>
+                <p class="text-white">{{ cast.character }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

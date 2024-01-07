@@ -4,7 +4,7 @@
       <div class="col-lg-3 mt-5 mb-5" *ngIf="result.poster_path">
         <img
           src="https://image.tmdb.org/t/p/original/{{ result.poster_path }}"
-          alt=""
+          [routerLink]="['/info', result.id]"
         />
       </div>
       <div class="col-lg-9 mt-5 mb-5">

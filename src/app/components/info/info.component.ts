@@ -58,7 +58,8 @@ export class InfoComponent implements OnInit {
 
   getCast(id: any) {
     this.filmService.getCastFilm(id).subscribe((data) => {
-      this.getCastResult = data;
+      console.log(data, 'movieCast#');
+      this.getCastResult = data.cast;
     });
   }
 
