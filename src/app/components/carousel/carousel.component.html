@@ -9,20 +9,13 @@
         src="https://image.tmdb.org/t/p/original/{{ film.backdrop_path }}"
         class="d-block w-100"
         [alt]="film.title"
+        [routerLink]="['/info', film.id]"
       />
 
       <div class="carousel-caption d-md-block film">
         <h1>{{ film.title }}</h1>
 
-        <button class="btn btn-primary btn-play">
-          Play <i class="fas fa-play"></i>
-        </button>
-        <button
-          class="btn btn-secondary btn-info"
-          [routerLink]="['info', film.id]"
-        >
-          Info <i class="fas fa-info-circle"></i>
-        </button>
+        <p>{{ film.overview }}</p>
       </div>
     </div>
   </div>

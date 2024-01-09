@@ -16,11 +16,11 @@ export class CarouselComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getTopRated();
+    this.getPopular();
   }
 
-  getTopRated() {
-    this.filmService.getTmdbTopRated().subscribe((data) => {
+  getPopular() {
+    this.filmService.getTmdbPopular().subscribe((data) => {
       this.carouselFilm = data.results;
     });
   }

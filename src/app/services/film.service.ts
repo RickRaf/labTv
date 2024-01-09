@@ -27,8 +27,8 @@ export class FilmService {
   }
 
   //get api top rated
-  getTmdbTopRated(): Observable<any> {
-    const url = `${environment.tmdbBaseUrl}/movie/top_rated?api_key=${environment.FILM_API_KEY}`;
+  getTmdbAnimation(): Observable<any> {
+    const url = `${environment.tmdbBaseUrl}/discover/movie?api_key=${environment.FILM_API_KEY}&with_genres=16`;
     const headers = new HttpHeaders({
       Authorization: `Bearer ${environment.FILM_ACCESS_TOKEN}`,
     });
@@ -36,9 +36,19 @@ export class FilmService {
     return this.http.get(url, { headers });
   }
 
-  //get api ucpoming
-  getTmdbUpcoming(): Observable<any> {
-    const url = `${environment.tmdbBaseUrl}/movie/upcoming?api_key=${environment.FILM_API_KEY}`;
+  //get api comedy
+  getTmdbComedy(): Observable<any> {
+    const url = `${environment.tmdbBaseUrl}/discover/movie?api_key=${environment.FILM_API_KEY}&with_genres=35`;
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${environment.FILM_ACCESS_TOKEN}`,
+    });
+
+    return this.http.get(url, { headers });
+  }
+
+  //get api thriller
+  getTmdbThriller(): Observable<any> {
+    const url = `${environment.tmdbBaseUrl}/discover/movie?api_key=${environment.FILM_API_KEY}&with_genres=53`;
     const headers = new HttpHeaders({
       Authorization: `Bearer ${environment.FILM_ACCESS_TOKEN}`,
     });

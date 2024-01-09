@@ -8,13 +8,13 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  popularFilms?: any[];
-  upComingFilms?: any[];
-  nowPlayingFilms?: any[];
+  comedyFilms?: any[];
+  thrillerFilms?: any[];
+  animationFilms?: any[];
 
-  popularStartIndex: number = 0;
-  upComingStartIndex: number = 0;
-  nowPlayingStartIndex: number = 0;
+  comedyStartIndex: number = 0;
+  thrillerStartIndex: number = 0;
+  animationStartIndex: number = 0;
 
   filmsToShow: number = 5;
 
@@ -24,19 +24,26 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getPopular();
-    this.getUpcoming();
+    this.getThriller();
+    this.getComedy();
+    this.getAnimation();
   }
 
-  getUpcoming() {
-    this.filmService.getTmdbUpcoming().subscribe((data) => {
-      this.upComingFilms = data.results;
+  getComedy() {
+    this.filmService.getTmdbComedy().subscribe((data) => {
+      this.comedyFilms = data.results;
     });
   }
 
-  getPopular() {
-    this.filmService.getTmdbPopular().subscribe((data) => {
-      this.popularFilms = data.results;
+  getThriller() {
+    this.filmService.getTmdbThriller().subscribe((data) => {
+      this.thrillerFilms = data.results;
+    });
+  }
+
+  getAnimation() {
+    this.filmService.getTmdbAnimation().subscribe((data) => {
+      this.animationFilms = data.results;
     });
   }
 
@@ -65,10 +72,12 @@ export class HomeComponent implements OnInit {
       startIndex = films!.length - this.filmsToShow;
     }
 
-    if (films === this.popularFilms) {
-      this.popularStartIndex = startIndex;
-    } else if (films === this.upComingFilms) {
-      this.upComingStartIndex = startIndex;
+    if (films === this.comedyFilms) {
+      this.comedyStartIndex = startIndex;
+    } else if (films === this.thrillerFilms) {
+      this.thrillerStartIndex = startIndex;
+    } else if (films === this.animationFilms) {
+      this.animationStartIndex = startIndex;
     }
   }
 
@@ -80,28 +89,38 @@ export class HomeComponent implements OnInit {
       startIndex = 0;
     }
 
-    if (films === this.popularFilms) {
-      this.popularStartIndex = startIndex;
-    } else if (films === this.upComingFilms) {
-      this.upComingStartIndex = startIndex;
+    if (films === this.comedyFilms) {
+      this.comedyStartIndex = startIndex;
+    } else if (films === this.thrillerFilms) {
+      this.thrillerStartIndex = startIndex;
+    } else if (films === this.animationFilms) {
+      this.animationStartIndex = startIndex;
     }
   }
 
   //applico ad ogni button le istruzioni generali
-  loadPreviousPopularFilms() {
-    this.loadPreviousFilms(this.popularStartIndex, this.popularFilms!);
+  loadPreviousComedyFilms() {
+    this.loadPreviousFilms(this.comedyStartIndex, this.comedyFilms!);
   }
 
-  loadNextPopularFilms() {
-    this.loadNextFilms(this.popularStartIndex, this.popularFilms!);
+  loadNextComedyFilms() {
+    this.loadNextFilms(this.comedyStartIndex, this.comedyFilms!);
   }
 
-  loadPreviousUpComingFilms() {
-    this.loadPreviousFilms(this.upComingStartIndex, this.upComingFilms!);
+  loadPreviousThrillerFilms() {
+    this.loadPreviousFilms(this.thrillerStartIndex, this.thrillerFilms!);
   }
 
-  loadNextUpComingFilms() {
-    this.loadNextFilms(this.upComingStartIndex, this.upComingFilms!);
+  loadNextThrillerFilms() {
+    this.loadNextFilms(this.thrillerStartIndex, this.thrillerFilms!);
+  }
+
+  loadPreviousAnimationFilms() {
+    this.loadPreviousFilms(this.animationStartIndex, this.animationFilms!);
+  }
+
+  loadNextAnimationFilms() {
+    this.loadNextFilms(this.animationStartIndex, this.animationFilms!);
   }
 
   getVisibleFilmsGeneric(startIndex: number, films: any[]): any[] {

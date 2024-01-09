@@ -1,12 +1,12 @@
 <app-carousel></app-carousel>
 
 <div class="popularCarousel carousel slide" data-bs-ride="carousel">
-  <h1>Popular</h1>
+  <h1>Comedy</h1>
   <div class="carousel-inner">
     <div class="carousel-item active">
       <div class="d-flex justify-content-around">
         <div
-          *ngFor="let film of getVisibleFilms(popularStartIndex, popularFilms!)"
+          *ngFor="let film of getVisibleFilms(comedyStartIndex, comedyFilms!)"
           class="card g-2"
           style="width: 18rem; background-color: black"
         >
@@ -31,7 +31,7 @@
     <button
       class="carousel-control-prev prev my-auto"
       type="button"
-      (click)="loadPreviousPopularFilms()"
+      (click)="loadPreviousComedyFilms()"
     >
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
@@ -39,7 +39,7 @@
     <button
       class="carousel-control-next next my-auto"
       type="button"
-      (click)="loadNextPopularFilms()"
+      (click)="loadNextComedyFilms()"
     >
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
@@ -49,13 +49,13 @@
 
 <!-- 2 carousel -->
 <div class="popularCarousel carousel slide" data-bs-ride="carousel">
-  <h1>Upcoming</h1>
+  <h1>Thriller</h1>
   <div class="carousel-inner">
     <div class="carousel-item active">
       <div class="d-flex justify-content-around">
         <div
           *ngFor="
-            let film of getVisibleFilms(upComingStartIndex, upComingFilms!)
+            let film of getVisibleFilms(thrillerStartIndex, thrillerFilms!)
           "
           class="card g-2"
           style="width: 18rem; background-color: black"
@@ -81,7 +81,7 @@
     <button
       class="carousel-control-prev prev my-auto"
       type="button"
-      (click)="loadPreviousUpComingFilms()"
+      (click)="loadPreviousThrillerFilms()"
     >
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
@@ -89,7 +89,57 @@
     <button
       class="carousel-control-next next my-auto"
       type="button"
-      (click)="loadNextUpComingFilms()"
+      (click)="loadNextThrillerFilms()"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+
+<!-- carousel 3 -->
+<div class="popularCarousel carousel slide" data-bs-ride="carousel">
+  <h1>Animation</h1>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <div class="d-flex justify-content-around">
+        <div
+          *ngFor="
+            let film of getVisibleFilms(animationStartIndex, animationFilms!)
+          "
+          class="card g-2"
+          style="width: 18rem; background-color: black"
+        >
+          <div class="card-body">
+            <h3 class="card-title" style="color: white">{{ film.title }}</h3>
+            <h6 class="card-subtitle mb-2" style="color: white">
+              {{ film.release_date }}
+            </h6>
+            <img
+              [src]="getMoviePosterUrl(film.poster_path)"
+              class="card-img-top"
+              [alt]="film.title"
+              [routerLink]="['/info', film.id]"
+            />
+            <p class="card-text" style="color: white">{{ film.overview }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="carousel-controls d-flex align-items-center">
+    <button
+      class="carousel-control-prev prev my-auto"
+      type="button"
+      (click)="loadPreviousAnimationFilms()"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+      class="carousel-control-next next my-auto"
+      type="button"
+      (click)="loadNextAnimationFilms()"
     >
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>

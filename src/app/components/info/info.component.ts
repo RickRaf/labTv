@@ -18,10 +18,10 @@ export class InfoComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    let getId = this.router.snapshot.paramMap.get('id');
-    this.getInfo(getId);
-    this.getCast(getId);
-    this.getTrailer(getId);
+    let Id = this.router.snapshot.paramMap.get('id');
+    this.getInfo(Id);
+    this.getCast(Id);
+    this.getTrailer(Id);
   }
 
   getInfo(id: any) {
@@ -58,7 +58,6 @@ export class InfoComponent implements OnInit {
 
   getCast(id: any) {
     this.filmService.getCastFilm(id).subscribe((data) => {
-      console.log(data, 'movieCast#');
       this.getCastResult = data.cast;
     });
   }
