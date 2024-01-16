@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { films, searchResponse } from '../model/filmModel';
+import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FilmService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private sanitizer: DomSanitizer) {}
 
   //get json server
   getJsonServerData(): Observable<any> {
@@ -64,10 +65,34 @@ export class FilmService {
   }
 
   //get api trailer
-  getTrailerFilm(data: any): Observable<any> {
-    return this.http.get(
-      `${environment.tmdbBaseUrl}/movie/${data}/videos?api_key=${environment.FILM_API_KEY}`
+  //   getTrailerFilm(data: any): Observable<any> {
+  //     return this.http.get(
+  //       `${environment.tmdbBaseUrl}/movie/${data}/videos?api_key=${environment.FILM_API_KEY}`
+  //     );
+  //   }
+  getTrailerFilm(id: any): Observable<SafeResourceUrl | null> {
+    const url = `${environment.tmdbBaseUrl}/movie/${id}/videos?api_key=${environment.FILM_API_KEY}`;
+
+    return this.http.get(url).pipe(
+      map((data: any) => {
+        if (data && data.results && data.results.length > 0) {
+          const trailerKey = data.results[0].key;
+          return this.getTrailerEmbedUrl(trailerKey);
+        } else {
+          console.error('Nessun trailer disponibile.');
+          return null;
+        }
+      }),
+      catchError((error) => {
+        console.error('Errore nel recupero del trailer:', error);
+        return of(null);
+      })
     );
+  }
+
+  private getTrailerEmbedUrl(videoKey: string): SafeResourceUrl {
+    const url = `https://www.themoviedb.org/video/play?key=${videoKey}`;
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
   //get cast
