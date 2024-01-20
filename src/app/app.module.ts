@@ -27,6 +27,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
+import { PurchasedComponent } from './components/purchased/purchased.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { FormsModule } from '@angular/forms';
     CarouselComponent,
     RegisterComponent,
     LoginComponent,
+    PurchasedComponent,
   ],
   imports: [
     BrowserModule,

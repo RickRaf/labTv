@@ -26,8 +26,10 @@
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link text-danger fs-5 fw-bold me-3" routerLink=""
-            >Acquistati</a
+          <a
+            class="nav-link text-danger fs-5 fw-bold me-3"
+            routerLink="purchased"
+            >Purchased</a
           >
         </li>
       </ul>
@@ -38,7 +40,7 @@
           style="margin-right: 2%"
           (click)="logout()"
         >
-          Benvenuto {{ authService.getLoggedUser()!.user.name }} <br />(Esci)
+          Welcome {{ authService.getLoggedUser()!.user.name }} <br />(Exit)
         </button>
       </ng-container>
       <form

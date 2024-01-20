@@ -10,12 +10,9 @@
     <div class="col-lg-10 mt-5 mb-5 p-4">
       <h1 class="mt-2 mb-2">{{ getInfoResult.original_title }}</h1>
       <p class="mt-3 mb-3">{{ getInfoResult.overview }}</p>
-      <!-- <button
-        class="btn btn-primary btn"
-        (click)="openTrailer(getTrailerResult)"
-      >
-        watch trailer <i class="fas fa-play"></i>
-      </button> -->
+      <button class="btn btn-primary btn" (click)="addToPurchased()">
+        Buy
+      </button>
 
       <!-- Aggiungi questo iframe al tuo template HTML -->
       <div

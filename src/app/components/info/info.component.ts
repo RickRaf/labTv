@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, map } from 'rxjs';
 import { FilmService } from 'src/app/services/film.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { PurchasedServiceService } from 'src/app/services/purchased-service.service';
 
 @Component({
   selector: 'app-info',
@@ -19,7 +20,8 @@ export class InfoComponent implements OnInit {
     private router: ActivatedRoute,
     private sanitizer: DomSanitizer,
     private myIframe: ElementRef,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private purchasedService: PurchasedServiceService
   ) {}
 
   ngOnInit(): void {
@@ -116,6 +118,16 @@ export class InfoComponent implements OnInit {
     } else {
       console.error(
         "Impossibile accedere all'elemento nativeElement dell'iframe."
+      );
+    }
+  }
+
+  addToPurchased(): void {
+    if (this.getInfoResult) {
+      this.purchasedService.purchasedFilm(this.getInfoResult);
+    } else {
+      console.error(
+        'Impossibile aggiungere ai preferiti: getInfoResult non definito.'
       );
     }
   }
