@@ -41,6 +41,11 @@ export class AuthService {
     return null;
   }
 
+  getLoggedUserId(): number | null {
+    const loggedUser = this.getLoggedUser();
+    return loggedUser ? loggedUser.user.id : null;
+  }
+
   get isUserLogged(): boolean {
     return this.getLoggedUser() != null;
   }
