@@ -18,6 +18,7 @@ p {
   transition: 0.8s ease-in-out;
   color: red;
   border-color: red;
+  margin-bottom: 1.5rem;
 }
 
 .btn:hover {

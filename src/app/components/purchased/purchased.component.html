@@ -1,5 +1,25 @@
-<a *ngFor="let film of purchasedFilms" [routerLink]="['/info', film.id]">
-  <div>
-    <img src="https://image.tmdb.org/t/p/w500/{{ film.poster_path }}" />
+<div class="container-fluid">
+  <div class="row">
+    <div *ngFor="let film of purchasedFilms">
+      <div class="col-md-4 mb-4">
+        <h2 class="card-title">{{ film.title }}</h2>
+        <a class="card" style="width: 18rem" [routerLink]="['/info', film.id]">
+          <img
+            class="card-img-top"
+            src="https://image.tmdb.org/t/p/w500/{{ film.poster_path }}"
+            alt="film.title"
+          />
+        </a>
+        <button class="btn btn-primary" (click)="playMovie()">Play</button>
+        <button class="btn btn-primary ref" (click)="refundMovie(film)">
+          refund
+        </button>
+      </div>
+    </div>
   </div>
-</a>
+
+  <div *ngIf="refundAlertMessage" class="alert alert-success">
+    {{ refundAlertMessage }}
+    <button class="close" (click)="hideRefundAlert()">&times;</button>
+  </div>
+</div>

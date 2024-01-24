@@ -87,44 +87,6 @@ export class InfoComponent implements OnInit {
   //     window.open(url, '_blank');
   //   }
 
-  getTrailerEmbedUrl(videoKey: string): SafeResourceUrl {
-    const url = `https://www.themoviedb.org/video/play?key=${videoKey}`;
-    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
-  }
-
-  adjustIframeHeight(event: any): void {
-    console.log('Funzione adjustIframeHeight chiamata con evento:', event);
-
-    if (this.myIframe && this.myIframe.nativeElement) {
-      const iframeDocument =
-        this.myIframe.nativeElement.contentDocument ||
-        (this.myIframe.nativeElement.contentWindow
-          ? this.myIframe.nativeElement.contentWindow.document
-          : undefined);
-
-      try {
-        if (iframeDocument) {
-          iframeDocument.body.style.height = '500px';
-          console.log("Altezza del body dell'iframe modificata con successo.");
-        } else {
-          console.error(
-            "Impossibile accedere al documento dell'iframe. Contenuto del documento:",
-            this.myIframe.nativeElement.contentWindow
-          );
-        }
-      } catch (error) {
-        console.error(
-          "Errore durante l'accesso al documento dell'iframe:",
-          error
-        );
-      }
-    } else {
-      console.error(
-        "Impossibile accedere all'elemento nativeElement dell'iframe."
-      );
-    }
-  }
-
   addToPurchased(): void {
     if (this.getInfoResult) {
       console.log('Dati del film:', this.getInfoResult);

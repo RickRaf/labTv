@@ -20,7 +20,7 @@ export class PurchasedServiceService {
   purchasedFilm(movie: any, userId: number): Observable<any> {
     const movieWithUserId = { ...movie, userId };
     if (!this.purchased.some((pur) => pur.id === movie.id)) {
-      //   this.purchased.push(movie);
+      this.purchased.push(movie);
       console.log('Film aggiunto ai preferiti:', movie);
       return this.http.post<any>(
         `${environment.JSON_SERVER_BASE_URL}/purchased`,
@@ -30,5 +30,10 @@ export class PurchasedServiceService {
       console.log('Il film è già nei preferiti:', movie);
       return Observable.create();
     }
+  }
+  refundFilm(filmId: number, userId: number): Observable<any> {
+    return this.http.delete<any>(
+      `${environment.JSON_SERVER_BASE_URL}/purchased/${filmId}?userId=${userId}`
+    );
   }
 }

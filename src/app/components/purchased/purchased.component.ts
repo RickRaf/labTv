@@ -12,6 +12,8 @@ import { PurchasedServiceService } from 'src/app/services/purchased-service.serv
 })
 export class PurchasedComponent implements OnInit {
   purchasedFilms: any[] = [];
+  disableClick: boolean = false;
+  refundAlertMessage: string | null = null;
 
   constructor(
     private purchasedService: PurchasedServiceService,
@@ -41,5 +43,38 @@ export class PurchasedComponent implements OnInit {
     } else {
       console.error('ID utente non valido.');
     }
+  }
+
+  playMovie() {
+    if (!this.disableClick) {
+      //da implementare quando si avranno i film completi per avviarli
+    }
+  }
+
+  refundMovie(film: any) {
+    const userId = this.authService.getLoggedUserId();
+    console.log('ID del film da rimborsare:', film.id);
+
+    if (userId !== null && userId !== undefined) {
+      this.purchasedService.refundFilm(film.id, userId).subscribe(
+        () => {
+          console.log('Film rimborsato con successo:', film);
+          this.purchasedFilms = this.purchasedFilms.filter(
+            (purchasedFilm) => purchasedFilm.id !== film.id
+          );
+          this.refundAlertMessage = `${film.title} successfully refunded.`;
+        },
+        (error) => {
+          console.error('Errore durante il rimborso del film:', error);
+          console.error("Dettagli dell'errore:", error.message || error);
+        }
+      );
+    } else {
+      console.error('ID utente non valido.');
+    }
+  }
+
+  hideRefundAlert() {
+    this.refundAlertMessage = null;
   }
 }
