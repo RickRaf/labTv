@@ -91,7 +91,7 @@ export class FilmService {
   }
 
   private getTrailerEmbedUrl(videoKey: string): SafeResourceUrl {
-    const url = `https://www.themoviedb.org/video/play?key=${videoKey}`;
+    const url = `https://www.youtube.com/embed/${videoKey}`;
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 

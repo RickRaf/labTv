@@ -1,3 +1,7 @@
+.carousel-item {
+  height: 90vh;
+}
+
 .film {
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 1%;
@@ -26,4 +30,5 @@
 
 img {
   cursor: pointer;
+  object-fit: cover;
 }

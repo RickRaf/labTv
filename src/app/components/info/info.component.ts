@@ -40,32 +40,6 @@ export class InfoComponent implements OnInit {
     });
   }
 
-  //   getTrailer(id: any) {
-  //     this.filmService.getTrailerFilm(id).subscribe((data) => {
-  //       console.log('Risposta dalla chiamata:', data);
-
-  //       // Verifica se la proprietà 'results' è definita e se è un array non vuoto
-  //       if (
-  //         data.results &&
-  //         Array.isArray(data.results) &&
-  //         data.results.length > 0
-  //       ) {
-  //         data.results.forEach((result: any) => {
-  //           // Verifica se l'elemento ha la proprietà 'type' e se è 'Trailer'
-  //           if (result.type === 'Trailer') {
-  //             console.log('Result key:', result.key);
-
-  //             this.getTrailerResult = result.key;
-  //           }
-  //         });
-  //       } else {
-  //         console.error(
-  //           'La proprietà results in data non è definita o è un array vuoto.'
-  //         );
-  //       }
-  //     });
-  //   }
-
   getTrailer(id: any) {
     this.filmService.getTrailerFilm(id).subscribe((trailerResult) => {
       if (trailerResult) {
