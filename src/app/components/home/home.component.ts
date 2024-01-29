@@ -69,7 +69,7 @@ export class HomeComponent implements OnInit {
   loadPreviousFilms(startIndex: number, films: any[]): void {
     startIndex = Math.max(0, startIndex - this.filmsToShow);
     if (startIndex === 0) {
-      startIndex = films!.length - this.filmsToShow;
+      startIndex = films.length - this.filmsToShow;
     }
 
     if (films === this.comedyFilms) {
@@ -83,7 +83,7 @@ export class HomeComponent implements OnInit {
 
   //gestione generale del next button
   loadNextFilms(startIndex: number, films: any[]): void {
-    if (startIndex + this.filmsToShow < films!.length) {
+    if (startIndex + this.filmsToShow < films.length) {
       startIndex += this.filmsToShow;
     } else {
       startIndex = 0;
