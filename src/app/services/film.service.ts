@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError, map, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { films, searchResponse } from '../model/filmModel';
+import { films, searchFilm } from '../model/filmModel';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 
 @Injectable({
@@ -64,12 +64,6 @@ export class FilmService {
     );
   }
 
-  //get api trailer
-  //   getTrailerFilm(data: any): Observable<any> {
-  //     return this.http.get(
-  //       `${environment.tmdbBaseUrl}/movie/${data}/videos?api_key=${environment.FILM_API_KEY}`
-  //     );
-  //   }
   getTrailerFilm(id: any): Observable<SafeResourceUrl | null> {
     const url = `${environment.tmdbBaseUrl}/movie/${id}/videos?api_key=${environment.FILM_API_KEY}`;
 

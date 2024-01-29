@@ -1,6 +1,6 @@
-export interface searchResponse {
+export interface searchFilm {
   page: number;
-  results: any[];
+  results: films[];
   total_pages: number;
   total_results: number;
 }
