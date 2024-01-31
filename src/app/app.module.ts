@@ -28,6 +28,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
 import { PurchasedComponent } from './components/purchased/purchased.component';
+import { ContactsComponent } from './components/contacts/contacts.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { PurchasedComponent } from './components/purchased/purchased.component';
     RegisterComponent,
     LoginComponent,
     PurchasedComponent,
+    ContactsComponent,
   ],
   imports: [
     BrowserModule,
