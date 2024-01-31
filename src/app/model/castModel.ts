@@ -1,4 +1,4 @@
-export interface Root {
+export interface CastAndCrew {
   id: number;
   cast: Cast[];
   crew: Crew[];

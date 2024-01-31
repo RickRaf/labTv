@@ -1,11 +1,11 @@
-export interface Root {
+export interface General {
   created_by: string;
   description: string;
   favorite_count: number;
   id: number;
   iso_639_1: string;
   item_count: number;
-  items: Item[];
+  items: Info[];
   name: string;
   page: number;
   poster_path: any;
@@ -13,7 +13,7 @@ export interface Root {
   total_results: number;
 }
 
-export interface Item {
+export interface Info {
   adult: boolean;
   backdrop_path: string;
   id: number;

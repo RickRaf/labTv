@@ -1,4 +1,4 @@
-export interface searchFilm {
+export interface filmGeneral {
   page: number;
   results: films[];
   total_pages: number;

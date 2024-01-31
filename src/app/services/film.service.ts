@@ -2,8 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError, map, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { films, searchFilm } from '../model/filmModel';
+import { filmGeneral, films } from '../model/filmModel';
+import { General } from '../model/infoModel';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
+import { CastAndCrew } from '../model/castModel';
 
 @Injectable({
   providedIn: 'root',
@@ -18,49 +20,49 @@ export class FilmService {
   }
 
   //get api popular
-  getTmdbPopular(): Observable<any> {
+  getTmdbPopular(): Observable<filmGeneral> {
     const url = `${environment.tmdbBaseUrl}/movie/popular?api_key=${environment.FILM_API_KEY}`;
     const headers = new HttpHeaders({
       Authorization: `Bearer ${environment.FILM_ACCESS_TOKEN}`,
     });
 
-    return this.http.get(url, { headers });
+    return this.http.get<filmGeneral>(url, { headers });
   }
 
   //get api top rated
-  getTmdbAnimation(): Observable<any> {
+  getTmdbAnimation(): Observable<filmGeneral> {
     const url = `${environment.tmdbBaseUrl}/discover/movie?api_key=${environment.FILM_API_KEY}&with_genres=16`;
     const headers = new HttpHeaders({
       Authorization: `Bearer ${environment.FILM_ACCESS_TOKEN}`,
     });
 
-    return this.http.get(url, { headers });
+    return this.http.get<filmGeneral>(url, { headers });
   }
 
   //get api comedy
-  getTmdbComedy(): Observable<any> {
+  getTmdbComedy(): Observable<filmGeneral> {
     const url = `${environment.tmdbBaseUrl}/discover/movie?api_key=${environment.FILM_API_KEY}&with_genres=35`;
     const headers = new HttpHeaders({
       Authorization: `Bearer ${environment.FILM_ACCESS_TOKEN}`,
     });
 
-    return this.http.get(url, { headers });
+    return this.http.get<filmGeneral>(url, { headers });
   }
 
   //get api thriller
-  getTmdbThriller(): Observable<any> {
+  getTmdbThriller(): Observable<filmGeneral> {
     const url = `${environment.tmdbBaseUrl}/discover/movie?api_key=${environment.FILM_API_KEY}&with_genres=53`;
     const headers = new HttpHeaders({
       Authorization: `Bearer ${environment.FILM_ACCESS_TOKEN}`,
     });
 
-    return this.http.get(url, { headers });
+    return this.http.get<filmGeneral>(url, { headers });
   }
 
   //get api info film
-  getInfoFilm(data: any): Observable<any> {
-    return this.http.get(
-      `${environment.tmdbBaseUrl}/movie/${data}?api_key=${environment.FILM_API_KEY}`
+  getInfoFilm(id: any): Observable<General> {
+    return this.http.get<General>(
+      `${environment.tmdbBaseUrl}/movie/${id}?api_key=${environment.FILM_API_KEY}`
     );
   }
 
@@ -90,9 +92,9 @@ export class FilmService {
   }
 
   //get cast
-  getCastFilm(data: any): Observable<any> {
-    return this.http.get(
-      `${environment.tmdbBaseUrl}/movie/${data}/credits?api_key=${environment.FILM_API_KEY}`
+  getCastFilm(id: any): Observable<CastAndCrew> {
+    return this.http.get<CastAndCrew>(
+      `${environment.tmdbBaseUrl}/movie/${id}/credits?api_key=${environment.FILM_API_KEY}`
     );
   }
 }

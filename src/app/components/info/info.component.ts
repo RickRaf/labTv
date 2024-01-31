@@ -56,11 +56,6 @@ export class InfoComponent implements OnInit {
     });
   }
 
-  //   openTrailer(videoKey: string): void {
-  //     const url = `https://www.themoviedb.org/video/play?key=${videoKey}`;
-  //     window.open(url, '_blank');
-  //   }
-
   addToPurchased(): void {
     if (this.getInfoResult) {
       console.log('Dati del film:', this.getInfoResult);
