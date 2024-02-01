@@ -40,16 +40,6 @@ h1 {
   border-radius: 5px 0 0 5px;
 }
 
-.card-subtitle,
-.card-title,
-.card-text,
-.card-link {
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: max-height 1s ease-in-out, opacity 1s ease-in-out;
-}
-
 .card:hover .card-subtitle,
 .card:hover .card-text,
 .card:hover .card-link,
@@ -90,4 +80,28 @@ p {
 
 i {
   margin-left: 1.2px;
+}
+
+@media (max-width: 760px) {
+  .card-text {
+    display: none;
+  }
+
+  .card-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+@media (min-width: 760px) {
+  .card-subtitle,
+  .card-title,
+  .card-text,
+  .card-link {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 1s ease-in-out, opacity 1s ease-in-out;
+  }
 }
