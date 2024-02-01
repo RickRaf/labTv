@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class PurchasedServiceService {
   private purchased: any[] = [];
+  alreadyInList: boolean = false;
 
   constructor(private http: HttpClient) {}
 
@@ -28,7 +29,8 @@ export class PurchasedServiceService {
       );
     } else {
       console.log('Il film è già nei preferiti:', movie);
-      return Observable.create();
+
+      return of({ alreadyInList: true });
     }
   }
   refundFilm(filmId: number, userId: number): Observable<any> {

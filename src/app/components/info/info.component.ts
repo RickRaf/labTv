@@ -16,6 +16,8 @@ export class InfoComponent implements OnInit {
   getInfoResult: any;
   getTrailerResult: any;
   getCastResult: any;
+  showConfirmationOverlay: boolean = false;
+  message: string | undefined;
 
   constructor(
     private filmService: FilmService,
@@ -56,28 +58,41 @@ export class InfoComponent implements OnInit {
     });
   }
 
+  cancelPurchase(): void {
+    this.showConfirmationOverlay = false;
+    this.message = undefined;
+  }
+
   addToPurchased(): void {
     if (this.getInfoResult) {
-      console.log('Dati del film:', this.getInfoResult);
       const userId = this.authService.getLoggedUserId();
       if (userId !== null && userId !== undefined) {
         this.purchasedService
           .purchasedFilm(this.getInfoResult, userId)
           .subscribe(
             (response) => {
-              console.log('Film aggiunto ai preferiti con successo:', response);
+              if (response && response.alreadyInList) {
+                this.message =
+                  'The film is already present in the purchased list.';
+              } else {
+                this.message = 'Film added to purchased list!';
+              }
             },
             (error) => {
-              console.error("Errore durante l'aggiunta ai preferiti:", error);
+              this.message = 'Error during purchase. Try again.';
             }
           );
       } else {
-        console.error('ID utente non valido.');
+        this.message = 'Error: Invalid user ID.';
       }
     } else {
-      console.error(
-        'Impossibile aggiungere ai preferiti: getInfoResult non definito.'
-      );
+      this.message = 'Unable to purchase';
     }
+
+    setTimeout(() => {
+      this.message = undefined;
+    }, 3000);
+
+    this.showConfirmationOverlay = false;
   }
 }

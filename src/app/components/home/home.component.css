@@ -41,6 +41,7 @@ h1 {
 }
 
 .card-subtitle,
+.card-title,
 .card-text,
 .card-link {
   max-height: 0;
@@ -51,7 +52,8 @@ h1 {
 
 .card:hover .card-subtitle,
 .card:hover .card-text,
-.card:hover .card-link {
+.card:hover .card-link,
+.card:hover .card-title {
   max-height: 100%;
   opacity: 1;
 }

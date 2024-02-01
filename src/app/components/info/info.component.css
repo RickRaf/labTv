@@ -19,10 +19,64 @@ p {
   color: red;
   border-color: red;
   margin-bottom: 1.5rem;
+  margin-top: 1.5rem;
 }
 
 .btn:hover {
   background-color: red;
   color: white;
   opacity: 1;
+}
+
+.confirmation-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.blur-content {
+  backdrop-filter: blur(0);
+  pointer-events: auto;
+  background-color: white;
+  height: 20vh;
+  width: 30vw;
+  border-radius: 0.5rem;
+}
+
+.blur-content p {
+  color: black;
+  text-align: center;
+}
+
+.btn-confirm,
+.btn-cancel {
+  margin: 0 10px;
+  color: black;
+  border-color: black;
+}
+
+.btn-confirm:hover,
+.btn-cancel:hover {
+  background-color: black;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.indici {
+  margin: 0;
+  margin-right: 5%;
+  color: red;
+  white-space: nowrap;
 }
