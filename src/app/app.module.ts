@@ -29,6 +29,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
 import { PurchasedComponent } from './components/purchased/purchased.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { ContactsComponent } from './components/contacts/contacts.component';
     LoginComponent,
     PurchasedComponent,
     ContactsComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
