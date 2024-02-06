@@ -7,6 +7,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { loginGuard } from './guards/login.guard';
 import { PurchasedComponent } from './components/purchased/purchased.component';
+import { ContactsComponent } from './components/contacts/contacts.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [loginGuard] },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'purchased', component: PurchasedComponent },
+  { path: 'contacts', component: ContactsComponent },
 ];
 
 @NgModule({
